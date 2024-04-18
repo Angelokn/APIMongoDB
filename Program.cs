@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+//builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

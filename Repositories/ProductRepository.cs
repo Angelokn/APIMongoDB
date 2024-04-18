@@ -1,6 +1,7 @@
 ﻿namespace APIMongoDB.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
+
     }
 }
