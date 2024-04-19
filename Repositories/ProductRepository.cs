@@ -43,5 +43,29 @@ namespace APIMongoDB.Repositories
             return await _context.Products.Find(filter)
                 .ToListAsync();
         }
+
+        public async Task CreateProduct(Product product)
+        {
+            await _context.Products.InsertOneAsync(product);
+        }
+
+        public async Task<bool> UpdateProduct(Product product)
+        {
+            var prod = await _context.Products.ReplaceOneAsync(
+                filter: g => g.Id == product.Id, replacement: product);
+
+            return prod.IsAcknowledged && prod.ModifiedCount > 0;
+        }
+
+        public async Task<bool> DeleteProduct(int id)
+        {
+            FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
+
+            DeleteResult deleteResult = await _context.Products
+                                          .DeleteOneAsync(filter);
+
+            return deleteResult.IsAcknowledged
+                && deleteResult.DeletedCount > 0;
+        }
     }
 }
