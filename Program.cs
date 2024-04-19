@@ -1,4 +1,6 @@
+using APIMongoDB.Data;
 using APIMongoDB.Repositories;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+builder.Services.AddScoped<IProductContext, ProductContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductAPI", Version = "v1" });
+    });
+
 
 //builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
