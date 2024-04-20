@@ -11,19 +11,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
-
 builder.Services.AddScoped<IProductContext, ProductContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductAPI", Version = "v1" });
-    });
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductAPI", Version = "v1" });
+});
 
 
-//builder.Services.AddTransient<IProductRepository, ProductRepository>();
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

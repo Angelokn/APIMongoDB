@@ -5,7 +5,6 @@ namespace APIMongoDB.Data
 {
     public class ProductContext : IProductContext
     {
-        public IMongoCollection<Product> Products { get; set; }
         public ProductContext(IConfiguration configuration)
         {
             var client = new MongoClient(configuration.GetValue<string>
@@ -17,7 +16,8 @@ namespace APIMongoDB.Data
             Products = database.GetCollection<Product>(configuration.GetValue<string>
                 ("DatabaseSettings:CollectionName"));
 
-            //ProductContextSeed.SeedData(Products);
+            ProductContextSeed.SeedData(Products);
         }
+        public IMongoCollection<Product> Products { get; }
     }
 }

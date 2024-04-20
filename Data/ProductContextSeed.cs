@@ -18,8 +18,8 @@ namespace APIMongoDB.Data
         {
             return new List<Product>()
                 {
-                    new Product() { Id = 1, Name = "", Category = "", Description = "", Image = "", Price = 1.5M },
-                    new Product() { Id = 1, Name = "", Category = "", Description = "", Image = "", Price = 1.5M },
+                    new Product() { Id = "1", Name = "teste", Category = "teste", Description = "teste", Image = "teste", Price = 1.5M },
+                    new Product() { Id = "2", Name = "teste", Category = "teste", Description = "teste", Image = "teste", Price = 1.5M }
 
                 };
         }

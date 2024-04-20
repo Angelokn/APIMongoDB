@@ -20,7 +20,7 @@ namespace APIMongoDB.Repositories
                 .ToListAsync();
         }
 
-        public async Task<Product> GetProductById(int id)
+        public async Task<Product> GetProductById(string id)
         {
             return await _context.Products.Find(p => p.Id == id)
                 .FirstOrDefaultAsync();
@@ -57,7 +57,7 @@ namespace APIMongoDB.Repositories
             return prod.IsAcknowledged && prod.ModifiedCount > 0;
         }
 
-        public async Task<bool> DeleteProduct(int id)
+        public async Task<bool> DeleteProduct(string id)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
 

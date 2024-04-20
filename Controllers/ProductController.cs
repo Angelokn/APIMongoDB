@@ -23,7 +23,7 @@ namespace APIMongoDB.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name = "GetProductById")]
-        public async Task<ActionResult<Product>> GetProductById(int id)
+        public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _repository.GetProductById(id);
 
@@ -56,7 +56,7 @@ namespace APIMongoDB.Controllers
         }
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
-        public async Task<IActionResult> DeleteProductById(int id)
+        public async Task<IActionResult> DeleteProductById(string id)
         {
             return Ok(await _repository.DeleteProduct(id));
         }
