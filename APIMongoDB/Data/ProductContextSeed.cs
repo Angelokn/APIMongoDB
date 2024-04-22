@@ -7,7 +7,7 @@ namespace APIMongoDB.Data
     {
         public static void SeedData (IMongoCollection<Product> collection)
         {
-            bool prodList = collection.Find(p => true).Any();
+            var prodList = collection.Find(p => true).Any();
             if (!prodList)
             {
                 collection.InsertManyAsync(GetProducts());

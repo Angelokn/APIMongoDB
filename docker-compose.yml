@@ -1,14 +1,15 @@
-﻿version: '3.4'
+version: '3.4'
 
 services:
   catalogdb:
-    image : mongo
+    image: mongo
 
-  productapi:
-    image: ${DOCKER_REGISTRY-}productapi
+  apimongodb:
+    image: ${DOCKER_REGISTRY-}apimongodb
     build:
       context: .
       dockerfile: APIMongoDB/Dockerfile
 
 volumes:
-  mongo_data:   
+  mongo_data:
+
