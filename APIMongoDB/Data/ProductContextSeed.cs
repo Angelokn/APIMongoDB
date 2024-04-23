@@ -5,12 +5,22 @@ namespace APIMongoDB.Data
 {
     public class ProductContextSeed
     {
-        public static void SeedData (IMongoCollection<Product> collection)
+        //public static void SeedData (IMongoCollection<Product> collection)
+        //{
+        //    var prodList = collection.Find(p => true).Any();
+        //    if (!prodList)
+        //    {
+        //        collection.InsertManyAsync(GetProducts());
+        //    }
+        //}
+
+        public static async Task SeedData(IMongoCollection<Product> collection)
         {
-            var prodList = collection.Find(p => true).Any();
-            if (!prodList)
+            var count = await collection.CountDocumentsAsync(FilterDefinition<Product>.Empty);
+
+            if (count == 0)
             {
-                collection.InsertManyAsync(GetProducts());
+                await collection.InsertManyAsync(GetProducts());
             }
         }
 
